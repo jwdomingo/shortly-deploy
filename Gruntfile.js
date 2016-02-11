@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['public/client/*.js', 'public/lib/*.js'],
+        src: ['public/client/*.js'],
         dest: 'public/dist/main.js'
       }
     },
@@ -37,18 +37,26 @@ module.exports = function(grunt) {
     eslint: {
       target: [
         // Add list of files to lint here
+        'app/**/*.js',
+        'public/client/*.js',
+        '*.js'
       ]
     },
 
+    deploy: {
+
+    },
+
     cssmin: {
+      dist: {
+        src: 'public/style.css',
+        dest: 'public/dist/style.css'
+      }
     },
 
     watch: {
       scripts: {
-        files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
-        ],
+        files: [ 'public/client/**/*.js' ],
         tasks: [
           'concat',
           'uglify'
@@ -61,9 +69,18 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      prodServer: {
+      options: {
+        stderr: false
+      },
+      multiple: {
+        command: ['git add .', 'git commit -m "deploy"', 'git push live master'].join('&&')
       }
-    },
+      // prodServer: {
+      //   // git add .
+      //   // git commit -m 'date, time'
+      //   // git 
+      // }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -89,11 +106,15 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('upload', function(n) {
+  grunt.registerTask('deploy', function(n) {
+    grunt.task.run([ 'build' ]);
+    
     if (grunt.option('prod')) {
       // add your production server task here
+      grunt.task.run([ 'shell' ]);
+    } else {
+      grunt.task.run([ 'server-dev' ]);
     }
-    grunt.task.run([ 'server-dev' ]);
   });
 
   ////////////////////////////////////////////////////
@@ -105,6 +126,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'eslint', 'test', 'concat', 'uglify', 'cssmin'
+    // run nodemon
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -115,10 +138,14 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-    'concat', 'uglify'
-  ]);
+  // grunt.registerTask('deploy', [
+  //   // add your deploy tasks here
+  //   'build'
+  //   // push to live master
+  //   // options: {
+  //   //   'prod': 'yes'
+  //   // }
+  // ]);
 
 
 };
