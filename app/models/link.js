@@ -2,7 +2,7 @@ var db = require('../config');
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 
-db.userSchema.pre('save', function(next) {
+db.urlSchema.pre('save', function(next) {
   this.updated_at = new Date();
   if (this.isNew) {
     this.created_at = this.updated_at;
