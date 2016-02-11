@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: ['public/client/*.js', 'public/lib/*.js'],
+        dest: 'public/dist/main.js'
+      }
     },
 
     mochaTest: {
@@ -21,6 +28,10 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      dist: {
+        src: 'public/dist/main.js',
+        dest: 'public/dist/main.js'
+      }
     },
 
     eslint: {
@@ -106,6 +117,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'concat', 'uglify'
   ]);
 
 
