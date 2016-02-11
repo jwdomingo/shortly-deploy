@@ -75,11 +75,6 @@ module.exports = function(grunt) {
       multiple: {
         command: ['git add .','git commit','git push live master'].join(' && ')
       }
-      // prodServer: {
-      //   // git add .
-      //   // git commit -m 'date, time'
-      //   // git 
-      // }
     }
   });
 
