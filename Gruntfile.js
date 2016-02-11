@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['public/client/*.js'],
-        dest: 'public/dist/main.js'
+        dest: 'public/main.js'
       }
     },
 
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
 
     uglify: {
       dist: {
-        src: 'public/dist/main.js',
-        dest: 'public/dist/main.js'
+        src: 'public/main.js',
+        dest: 'public/main.js'
       }
     },
 
@@ -49,8 +49,8 @@ module.exports = function(grunt) {
 
     cssmin: {
       dist: {
-        src: 'public/style.css',
-        dest: 'public/dist/style.css'
+        src: 'public/styles/style.css',
+        dest: 'public/style.css'
       }
     },
 
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         stderr: false
       },
       multiple: {
-        command: ['git add .', 'git commit -m "deploy"', 'git push live master'].join('&&')
+        command: ['git push live master'].join('&&')
       }
       // prodServer: {
       //   // git add .
