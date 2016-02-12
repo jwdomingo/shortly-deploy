@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://127.0.0.1/shortly');
+mongoose.connect('mongodb://107.170.192.173/shortly');
 
 var db = mongoose.connection;
 
