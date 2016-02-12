@@ -8,7 +8,8 @@ db.urlSchema.pre('save', function(next) {
     this.createdAt = this.updatedAt;
     var shasum = crypto.createHash('sha1');
     shasum.update(this.url);
-    model.code = shasum.digest('hex').slice(0, 5);
+    this.code = shasum.digest('hex').slice(0, 5);
+    this.save();
   }
   next();
 });
