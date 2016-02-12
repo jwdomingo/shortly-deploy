@@ -122,11 +122,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     // 'eslint', 
-    'test', 
+    // 'test', 
     'concat', 
     'uglify', 
     'cssmin',
-    'nodemon'
+    // 'nodemon'
   ]);
 
   grunt.registerTask('upload', function(n) {
