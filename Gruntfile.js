@@ -122,7 +122,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     // 'eslint', 
-    // 'test', 
+    'test', 
     'concat', 
     'uglify', 
     'cssmin',

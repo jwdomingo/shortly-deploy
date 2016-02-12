@@ -11,7 +11,7 @@ var Link = require('../app/models/link');
 // NOTE: these tests are designed for mongo!
 /////////////////////////////////////////////////////
 
-xdescribe('', function() {
+describe('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -49,6 +49,7 @@ xdescribe('', function() {
           .expect(200)
           .expect(function(res) {
             expect(res.body.url).to.equal('http://www.roflzoo.com/');
+            console.log(res.body);
             expect(res.body.code).to.be.ok;
           })
           .end(done);
