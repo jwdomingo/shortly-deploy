@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         stderr: false
       },
       multiple: {
-        command: ['git add .','git commit','git push live master'].join(' && ')
+        command: ['git add .', 'git commit', 'git push live master'].join(' && ')
       }
     }
   });
@@ -121,8 +121,12 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'eslint', 'test', 'concat', 'uglify', 'cssmin'
-    // run nodemon
+    // 'eslint', 
+    // 'test', 
+    'concat', 
+    'uglify', 
+    'cssmin',
+    'nodemon'
   ]);
 
   grunt.registerTask('upload', function(n) {

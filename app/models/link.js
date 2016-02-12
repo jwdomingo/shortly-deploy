@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 
 db.urlSchema.pre('save', function(next) {
-  this.updated_at = new Date();
+  this.updatedAt = new Date();
   if (this.isNew) {
-    this.created_at = this.updated_at;
+    this.createdAt = this.updatedAt;
     var shasum = crypto.createHash('sha1');
     shasum.update(this.url);
     model.code = shasum.digest('hex').slice(0, 5);

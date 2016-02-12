@@ -3,10 +3,11 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
+console.log('Object Keys of db: ',Object.keys(db));
 db.userSchema.pre('save', function(next) {
-  this.updated_at = new Date();
+  this.createdAt = new Date();
   if (this.isNew) {
-    this.created_at = this.updated_at;
+    this.createdAt = this.createdAt;
     this.hashPassword();
   }
   next();
